@@ -35,12 +35,4 @@ Eclipse, Visual Studio Code, Notion<br>
 <br>
 
 <p>기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
-[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://youtu.be/pWZ4pJBUc0c)
-
-
 https://user-images.githubusercontent.com/76993085/122028575-21acd580-ce07-11eb-93b0-4a9a916d1959.mp4
-
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/enMumwvLAug" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
-
