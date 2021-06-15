@@ -1,5 +1,4 @@
 <p align=""><img src="https://0905cjw.github.io/seoulmate_logo.png" height="50px"/></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>프로젝트 : 쉐어하우스&하우스메이트 매칭 웹서비스</h2>
 <p>https://github.com/ndamiz/SeoulMate</p>
 <p>* 목적 : 공용 주거공간에서 거주하고자하는 사람과 거주자가 필요한 쉐어하우스 간 매칭 플랫폼</p>
@@ -45,3 +44,9 @@ Eclipse, Visual Studio Code, Notion<br>
 
 <br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='http://www.youtube.com/embed/pWZ4pJBUc0c' frameborder='0' allowfullscreen></iframe></div>
+
+{ % youtube https://www.youtube.com/watch?v=pWZ4pJBUc0c % }
