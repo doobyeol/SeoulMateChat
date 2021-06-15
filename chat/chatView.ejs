@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SEOULMATE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/comm.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/main/comm.js"></script>
+	<script src="/socket.io/socket.io.js" type="text/javascript"></script> 
+	<script>
+		var socket;
+		socket = io.connect();
+		// 서버에서 발생한 이벤트를 처리할 함수
+		// 방만들기 (join) 이벤트
+		socket.emit('join', '<%=userid%>','<%=otherId%>', <%=chat_no%> );
+		socket.emit('joinOutCheck', '<%=userid%>','<%=otherId%>', <%=chat_no%>);
+		function back() {
+			// 방만들기 (join) 이벤트
+			socket.emit('join', '<%=userid%>','<%=otherId%>', <%=chat_no%>);
+			
+			setTimeout(function() {
+					location.href='/chat?userid=<%=userid%>&username=<%=username%>&back=on';
+			}, 100);
+		}
+			
+		socket.on('outCheck', function(otherJoin, blackCheck) {
+			console.log('otherJoin : ' + otherJoin);
+			console.log('blackCheck : ' + blackCheck);
+			if(otherJoin == 1 && blackCheck > 0){
+				blackOut();
+				scorll();
+			}else if(otherJoin==1){
+				otherOut();
+				scorll();
+			}
+		});
+		
+		function otherOut() {
+			$('.chat_msg').css('display', 'none');
+			$('.chat_body').append(
+					'<li class="right"><div class="chat_text outMsg"><p class="outMsg">' + otherId + '님이 나갔습니다.</p></div></li>'
+			);
+		}
+		
+		function blackOut() {
+			$('.chat_msg').css('display', 'none');
+			$('.chat_body').append(
+					'<li class="right"><div class="chat_text outMsg"><p class="outMsg">' + otherId + '님은 관리자에 의해 정지된 회원입니다.</p></div></li>'
+			);
+		}
+		
+		// 클라이언트가 서버로 데이터 보내기
+		function sendMessage() {
+			var txt = $('#send_msg').val();
+			if (txt != '') { // 보낼문자가 있을때
+				socket.emit('message', txt, '<%=userid%>', '<%=otherId%>', <%=chat_no%>);
+				socket.emit('joinOutCheck', '<%=userid%>','<%=otherId%>', <%=chat_no%>);
+				$('#send_msg').val('');
+				$('#send_msg').focus();
+				socket.emit('chatList', '<%=userid%>' , '<%=otherId%>');
+			}
+		}
+		
+		$(document).ready(function() {
+			// 전송버튼을 클릭하여 문자를 서버로 보낼때
+			$('.btn_send').click(function() {
+				sendMessage();
+			});
+			// 엔터를 눌러서 문자를 서버로 보낼때
+			$('#send_msg').keyup(function(keyEvent) {
+				if(keyEvent.keyCode==13){
+					sendMessage();
+				}
+			});
+			
+			socket.on('response', function(chat_username,msg,chat_othername, result2, otherJoin) {
+				if('<%=userid%>' == chat_username){
+					$('.chat_body').append(
+							'<li class="right"><div class="prf_box"><div class="profile"><img alt="" src="/img/profilePic/' + '<%=userpic%>' + '" onerror="this.src=' + "'/img/profilePic/no_mate_pic.png'" + '"> <p id="chat_username">' + chat_username + '</p></div></div><div class="txt_box"><div class="chat_text"><p>' + msg + '</p><p>' + result2.rows[0][5] +'</p></div></div></li>'
+					);
+				}else{
+					$('.chat_body').append(
+							'<li class="left"><div class="prf_box"><div class="profile"><img alt="" src="/img/profilePic/' + '<%=otherpic%>' + '" onerror="this.src=' + "'/img/profilePic/no_mate_pic.png'" + '"> <p id="chat_username">' + chat_username + '</p></div></div><div class="txt_box"><div class="chat_text"><p>' + msg + '</p><p>' + result2.rows[0][5] +'</p></div></div></li>'
+					);
+				}
+				scorll();
+				
+				if(otherJoin == 1){
+					otherOut();
+				}
+			});
+			
+			scorll();
+		});
+		
+		// 스크롤을 맨 아래로
+		function scorll() {
+			const $messageTextBox = $('.chat_body'); 
+			$messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
+		}
+		
+		//글 신고하기
+		var	reportid = '<%=userid%>';
+		var category = '채팅';
+		var no = <%=chat_no%>;
+		var otherId = '<%=otherId%>';
+		
+		function pupClose() {
+			$('.pup_wrap').css('display','none');
+			$("#reportcategory option:eq(0)").prop('selected', true);
+			$("#reportcontent").val("");
+		}
+		function report(){
+			$('.report_wrap').css('display','block');
+		}
+		
+		function sendReport() {
+			if($("#reportcategory option").index($("#reportcategory option:selected"))==0){
+				alert("신고사유를 선택하세요.");
+			}else if($("#reportcontent").val()==''){
+				alert("상세내용을 입력해주세요.");
+			}else{
+				var r_category = $('#reportcategory').val();
+				var r_content = $('#reportcontent').val();
+				socket.emit('report', <%=chat_no%>,'<%=otherId%>', '<%=userid%>', r_category, r_content);
+				pupClose();
+				alert('신고가 접수되었습니다.');
+			}
+		}
+		
+		function exit() {
+			$('.exit_wrap').css('display','block');
+		}
+		
+		function sendExit() {
+			socket.emit('chatOut', <%=chat_no%>, '<%=userid%>', '<%=otherId%>');
+			back();
+		}
+	</script>
+</head>
+<body>
+	<div class="chat_wrap">
+		<div class="chat_window chat_on on">
+			<div class="chat_head">
+				<!-- 관리자가 아닐때 보여주기 -->
+				<%if(admin != 'true'){%>
+					<a href="javascript:back()" class="back_btn"></a>
+				<%}%>
+				<p><%=otherId%></p>
+				<!-- 관리자가 아닐때 보여주기 -->
+				<%if(admin != 'true'){%>
+					<button class="close_btn" onclick="exit();"></button>
+					<button class="report_btn" onclick="report();"></button>
+				<%}%>
+			</div>
+			<ul class="chat_body">
+				<% for(var i=0; i< result.rows.length; i++){%>
+				<% if(userid == result.rows[i][2] ){ %>
+					<li class="right">
+				<%}else if(userid != result.rows[i][2]){%>
+					<li class="left">
+				<%}%>
+					<div class="prf_box">
+						<div class="profile">
+							<% if(userid == result.rows[i][2] ){ %>
+								<img alt="" src="/img/profilePic/<%=userpic%>" onerror="this.src='/img/profilePic/no_mate_pic.png'">
+							<%}else if(userid != result.rows[i][2]){%>
+								<img alt="" src="/img/profilePic/<%=otherpic%>" onerror="this.src='/img/profilePic/no_mate_pic.png'">
+							<%}%>
+							<p id="chat_username"><%=result.rows[i][2]%></p>
+						</div>
+					</div>
+					<div class="txt_box">
+						<div class="chat_text">
+							<p><%=result.rows[i][4]%></p>
+							<p><%=result.rows[i][5]%></p>
+						</div>
+					</div>
+				</li>
+				<%}%>
+			</ul>
+			<!-- 관리자가 아닐때 보여주기 -->
+			<%if(admin != 'true'){%>
+				<div class="chat_msg">
+					<input id="send_msg" name="send_msg" type="text" placeholder="메세지를 입력하세요" autocomplete="off">
+					<button class="btn_send"></button>
+				</div>
+			<%}%>
+		</div>
+	</div>
+	<!-- 관리자가 아닐때 보여주기 -->
+	<%if(admin != 'true'){%>
+	<div class="pup_wrap report_wrap">
+		<form id="reportForm" class="pup_form" method="post">
+			<div class="pup_head">채팅 신고</div>
+			<div class="pup_body">
+				<ul>
+						<li>
+							<select id="reportcategory" name="reportcategory">
+								<option disabled="" selected="" hidden="">신고사유를 선택하세요</option>
+								<option>홍보,광고</option>
+								<option>음란</option>
+								<option>욕설</option>
+								<option>기타</option>
+							</select>
+						</li>
+						<li><textarea rows="5" id="reportcontent" name="reportcontent" placeholder="상세 내용"></textarea></li>
+					</ul>
+			</div>
+			<div class="pup_bottom">
+				<a class="btn_cancel popupClose" onclick="pupClose()">취소</a>
+				<a href="#" onclick="sendReport()" class="btn_save">접수</a>
+			</div>
+		</form>
+	</div>
+	<%}%>
+	<!-- 관리자가 아닐때 보여주기 -->
+	<%if(admin != 'true'){%>
+	<div class="pup_wrap exit_wrap">
+		<form id="exitForm" class="pup_form" method="post">
+			<div class="pup_head">채팅방 나가기</div>
+			<div class="pup_body">
+				<ul>
+					<li>
+						<p>채팅방을 나가시겠습니까?</p>
+					</li>
+				</ul>
+			</div>
+			<div class="pup_bottom">
+				<a class="btn_cancel popupClose" onclick="pupClose()">취소</a>
+				<a href="#" onclick="sendExit()" class="btn_save">나가기</a>
+			</div>
+		</form>
+	</div>
+	<%}%>
+</body>
+</html>

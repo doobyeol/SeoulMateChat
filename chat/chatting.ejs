@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SEOULMATE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/comm.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/main/comm.js"></script>
+	<script src="/socket.io/socket.io.js" type="text/javascript"></script> 
+	<script>
+		var socket;
+		socket = io.connect();
+		
+		$(function() {
+			if(<%=back!=null%>){
+				$('.chat_window').addClass('on');
+				$('.chat_window').css('transition','inherit');
+			}
+		});
+		
+		$(document).ready(function(){
+			socket.emit('joinRoom', '<%=userid%>');
+			
+			for(var i=0; i< <%=result.rows.length%>; i++){
+				var ii = $(".chat_body>li").eq(i).find('div.chat_notic').children('p').eq(0);
+ 				var timeStr = "20" + ii.text();
+ 				var timeObj = new Date(timeStr);
+ 				var time = displayedAt(timeObj);
+ 				if(time == 'NaN년 전'){
+ 					time = ' ';
+ 				}
+ 				ii.text(time);
+			}
+			
+			$('.chat_body').find('.alertCount').each(function() {
+				var totalCount = Number($(this).text());
+				if(totalCount > 0){
+					$(this).css('background-color', '#2bc9a0');
+				}else if(totalCount == 0){
+					$(this).css('background-color', '#ccc');
+				}
+			});
+			
+			socket.on('chatList', function(userid, result, otherId, chat_no, total) {
+				var i = result.rows.length-1;
+				$('li h3:contains(' + userid + ')').next().text(result.rows[0][2]);
+				$('li h3:contains(' + userid + ')').next().parent().next().children('p').eq(0).text(result.rows[0][3]);
+				
+				var ii = $('li h3:contains(' + userid + ')').next().parent().next().children('p').eq(0);
+					var timeStr = "20" + ii.text();
+					var timeObj = new Date(timeStr);
+					var time = displayedAt(timeObj);
+					ii.text(time);
+				$('li h3:contains(' + userid + ')').next().parent().next().children('p').eq(1).css('background-color', '#2bc9a0');
+				$('li h3:contains(' + userid + ')').next().parent().next().children('p').eq(1).text(total);
+			}); 
+				
+			if($('.chat_body > li').length == 0){
+				$('.chat_body').append('<li class="no_data"><p>아직 개설된 채팅방이 없습니다.</p></li>');
+			};
+		});
+		
+		function displayedAt(createdAt) {
+			// 가져온 날짜 : createdAt
+			// 현재 시간 : nowDate2
+			// 현재 날짜 시간 : nowDate
+			// 밀리초 : milliSeconds
+			// 초 : seconds
+			var nowDate2 = new Date();
+			nowDate2 = getTimeStamp(nowDate2);
+			var nowDate = new Date(nowDate2);
+			const milliSeconds = nowDate - createdAt
+			const seconds = (milliSeconds) / 1000
+			if (seconds < 60) return `방금 전`
+			const minutes = seconds / 60
+			if (minutes < 60) return `${Math.floor(minutes)}분 전`
+			const hours = minutes / 60
+			if (hours < 24) return `${Math.floor(hours)}시간 전`
+			const days = hours / 24
+			if (days < 7) return `${Math.floor(days)}일 전`
+			const weeks = days / 7
+			if (weeks < 5) return `${Math.floor(weeks)}주 전`
+			const months = days / 30
+			if (months < 12) return `${Math.floor(months)}개월 전`
+			const years = days / 365
+			timeStr = "";
+			return `${Math.floor(years)}년 전`
+		}
+		
+		function getTimeStamp(d) {
+		  var s =
+		    leadingZeros(d.getFullYear(), 4) + '-' +
+		    leadingZeros(d.getMonth() + 1, 2) + '-' +
+		    leadingZeros(d.getDate(), 2) + ' ' +
+
+		    leadingZeros(d.getHours(), 2) + ':' +
+		    leadingZeros(d.getMinutes(), 2);
+		  return s;
+		}
+
+		function leadingZeros(n, digits) {
+		  var zero = '';
+		  n = n.toString();
+
+		  if (n.length < digits) {
+		    for (i = 0; i < digits - n.length; i++)
+		      zero += '0';
+		  }
+		  return zero + n;
+		}
+	</script>
+</head>
+<body>
+	<div class="chat_wrap">
+		<div class="chat_window chat_room_list">
+			<div class="chat_head">
+				<p><%=username%>님</p>
+				<p>소중한 약속을 잡아보세요!</p>
+			</div>
+			<ul class="chat_body">
+					<% for(var i=0; i< result.rows.length; i++){%>
+					<!-- userid는 chatuser1과 같고 && user1join이 0일때 이거나  -->
+					<!-- userid는 chatuser2과 같고 && user1join이 0일때 -->
+					<% if((userid == result.rows[i][2] && result.rows[i][7] == 0) || (userid == result.rows[i][3] && result.rows[i][8] == 0)){%>
+					<li>
+						<% if(userid == result.rows[i][2]){%>
+								<a href="/chatView?no=<%=result.rows[i][0]%>&username=<%=username%>&userid=<%=result.rows[i][2]%>&otherid=<%=result.rows[i][3]%>&userpic=<%=pics[result.rows[i][2]]%>&otherpic=<%=pics[result.rows[i][3]]%>&admin=false">
+						<%}else if(userid == result.rows[i][3]){%>
+								<a href="/chatView?no=<%=result.rows[i][0]%>&username=<%=username%>&userid=<%=result.rows[i][3]%>&otherid=<%=result.rows[i][2]%>&userpic=<%=pics[result.rows[i][3]]%>&otherpic=<%=pics[result.rows[i][2]]%>&admin=false">
+						<%}%>
+							<p><%=result.rows[i][1]%></p>
+							<div>
+								<div class="chat_text">	
+								<% if(userid == result.rows[i][2]){%>
+									<img alt="" src="/img/profilePic/<%=pics[result.rows[i][3]]%>">
+									<h3><%=result.rows[i][3]%></h3>
+								<%} else if(userid == result.rows[i][3]){%>
+									<img alt="" src="/img/profilePic/<%=pics[result.rows[i][2]]%>">
+									<h3><%=result.rows[i][2]%></h3>
+								<%} %>
+									<p> <!-- 최근메세지 내용 -->
+										<%for(var j=0; j < result2.rows.length; j++){ %>
+											<% if (result.rows[i][0] == result2.rows[j][0]){ %>
+												<%=result2.rows[j][1]%>
+											<%} %>
+										<%} %>
+									</p>
+								</div>
+								
+								<div class="chat_notic">
+									<!-- 최근메세지 시간 -->
+									<p><%for(var j=0; j < result2.rows.length; j++){ %><% if (result.rows[i][0] == result2.rows[j][0]){ %><%=result2.rows[j][2]%><%}%><%}%></p>
+									<p class="alertCount">
+										<% if(userid == result.rows[i][2]){%>
+											<% if(result.rows[i][5]-result.rows[i][6] < 0){%>
+												0
+											<%}else{%>
+												<%= result.rows[i][5]-result.rows[i][6] %>
+											<%}%>
+										<%}else if(userid == result.rows[i][3]){%>
+											<% if(result.rows[i][6]-result.rows[i][5] < 0){%>
+												0
+											<%}else{%>
+												<%= result.rows[i][6]-result.rows[i][5] %>
+											<%}%>
+										<%}%>
+									</p>
+								</div>
+							</div>
+						</a>
+					</li>
+					<%}%>
+				<%}%>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
