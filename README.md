@@ -35,18 +35,6 @@ Eclipse, Visual Studio Code, Notion<br>
 <br>
 
 <p>기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
-
-[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://www.youtube.com/watch?v=pWZ4pJBUc0c)
-
-<br>
-
-{% includes ifr.html id="pWZ4pJBUc0c" %}
-
-<br>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://user-images.githubusercontent.com/76993085/122028575-21acd580-ce07-11eb-93b0-4a9a916d1959.mp4
 
 
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='http://www.youtube.com/embed/pWZ4pJBUc0c' frameborder='0' allowfullscreen></iframe></div>
-
-{ % youtube https://www.youtube.com/watch?v=pWZ4pJBUc0c % }
