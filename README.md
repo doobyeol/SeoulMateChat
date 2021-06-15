@@ -5,4 +5,5 @@ https://github.com/ndamiz/SeoulMate
 <p>> 개발 기간 : 2021.04.15 ~ 2021.05.25</p>
 <p>> 기능 : NodeJS 인스턴스 메신저 서버 구축, DB연동 실시간 채팅 기능</p>
 <br/>
-<iframe width="640" height="360" src="https://youtu.be/pWZ4pJBUc0c" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+
+[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://https://youtu.be/pWZ4pJBUc0c) 
