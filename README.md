@@ -52,3 +52,7 @@ Eclipse, Visual Studio Code, Notion<br>
 
 https://user-images.githubusercontent.com/76993085/122028575-21acd580-ce07-11eb-93b0-4a9a916d1959.mp4
 
+
+<br>
+<p>* 다른 구현 기능 보러가기 : https://youtu.be/XGxMIWEITew</p>
+<p>https://github.com/ndamiz/SeoulMate</p> <br>
