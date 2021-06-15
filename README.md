@@ -6,4 +6,4 @@ https://github.com/ndamiz/SeoulMate
 <p>> 기능 : NodeJS 인스턴스 메신저 서버 구축, DB연동 실시간 채팅 기능</p>
 <br/>
 
-[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://https://youtu.be/pWZ4pJBUc0c) 
+[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://youtu.be/pWZ4pJBUc0c) 
