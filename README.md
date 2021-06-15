@@ -59,4 +59,4 @@ https://user-images.githubusercontent.com/76993085/122028575-21acd580-ce07-11eb-
 <p>서울메이트 Git : https://github.com/ndamiz/SeoulMate</p>
 <br>
 
-<p>* 프로젝트 후기 보러가기 : https://blog.naver.com/doobyeol </p>
+<p>* 프로젝트 후기 보러가기 : https://blog.naver.com/doobyeol/222399777718 </p>
