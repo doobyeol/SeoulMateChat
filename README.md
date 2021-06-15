@@ -33,7 +33,7 @@ Oracle, Node.js, Git<br>
 Eclipse, Visual Studio Code, Notion<br>
 <br>
 
-<p>기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
+<p>* 기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
 
 
 
