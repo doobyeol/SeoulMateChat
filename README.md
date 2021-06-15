@@ -36,8 +36,8 @@ Eclipse, Visual Studio Code, Notion<br>
 <br>
 
 <p>기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
-[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://youtu.be/pWZ4pJBUc0c) 
+[![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://www.youtube.com/watch?v=pWZ4pJBUc0c) 
 <br>
-{% include ifr.html id="https://youtu.be/pWZ4pJBUc0c" %}  
+{% include ifr.html id="https://www.youtube.com/watch?v=pWZ4pJBUc0c" %}  
 <br>
-<iframe width="640" height="360" src="https://youtu.be/pWZ4pJBUc0c" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/watch?v=pWZ4pJBUc0c" frameborder="0" gesture="media" allowfullscreen=""></iframe>
