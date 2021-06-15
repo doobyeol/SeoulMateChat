@@ -41,17 +41,13 @@ Eclipse, Visual Studio Code, Notion<br>
 
 <br>
 
-```
 {% include ifr.html id="pWZ4pJBUc0c" %}
-```
 
 <br>
 
-```
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-```
 
-```
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-```
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
