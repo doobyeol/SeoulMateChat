@@ -37,5 +37,5 @@ Eclipse, Visual Studio Code, Notion<br>
 
 <p>기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
 
-{% include include.html id="https://youtu.be/pWZ4pJBUc0c" %}  
+{% include ifr.html id="https://youtu.be/pWZ4pJBUc0c" %}  
 <iframe width="640" height="360" src="https://youtu.be/pWZ4pJBUc0c" frameborder="0" gesture="media" allowfullscreen=""></iframe>
