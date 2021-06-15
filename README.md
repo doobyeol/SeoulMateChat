@@ -54,5 +54,9 @@ https://user-images.githubusercontent.com/76993085/122028575-21acd580-ce07-11eb-
 
 
 <br>
-<p>* 다른 구현 기능 보러가기 : https://youtu.be/XGxMIWEITew</p>
-<p>https://github.com/ndamiz/SeoulMate</p> <br>
+<p>* 다른 구현 기능 보러가기 : </p>
+<p>서울메이트 기능 시현 : https://youtu.be/XGxMIWEITew</p>
+<p>서울메이트 Git : https://github.com/ndamiz/SeoulMate</p>
+<br>
+
+<p>* 프로젝트 후기 보러가기 : https://blog.naver.com/doobyeol </p>
