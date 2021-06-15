@@ -5,7 +5,7 @@
 <p>* 목적 : 공용 주거공간에서 거주하고자하는 사람과 거주자가 필요한 쉐어하우스 간 매칭 플랫폼</p>
 <p>* 개발 기간 : 2021.04.15 ~ 2021.05.25</p>
 
-<p>* 기능설명 : </p>
+<p>* 기능설명 : Node.js 인스턴스 웹 메신저 (실시간 채팅, DB연동, 채팅방 나가기, 신고하기)</p>
 <br>
 <p>
 - 채팅방 생성<br>
@@ -40,9 +40,7 @@ Eclipse, Visual Studio Code, Notion<br>
 [![채팅 기능 시현](http://img.youtube.com/vi/pWZ4pJBUc0c/0.jpg)](https://www.youtube.com/watch?v=pWZ4pJBUc0c)
 
 <br>
-
 {% include ifr.html id="pWZ4pJBUc0c" %}
-
 <br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pWZ4pJBUc0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
