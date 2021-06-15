@@ -3,7 +3,6 @@
 <p>https://github.com/ndamiz/SeoulMate</p>
 <p>* 목적 : 공용 주거공간에서 거주하고자하는 사람과 거주자가 필요한 쉐어하우스 간 매칭 플랫폼</p>
 <p>* 개발 기간 : 2021.04.15 ~ 2021.05.25</p>
-
 <p>* 기능설명 : Node.js 인스턴스 웹 메신저 (실시간 채팅, DB연동, 채팅방 나가기, 신고하기)</p>
 <br>
 <p>
@@ -35,4 +34,8 @@ Eclipse, Visual Studio Code, Notion<br>
 <br>
 
 <p>기능 시현 보러가기 : https://youtu.be/pWZ4pJBUc0c</p> <br>
+
+
+
 https://user-images.githubusercontent.com/76993085/122028575-21acd580-ce07-11eb-93b0-4a9a916d1959.mp4
+
